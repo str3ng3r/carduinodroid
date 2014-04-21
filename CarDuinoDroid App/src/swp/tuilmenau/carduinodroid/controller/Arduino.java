@@ -2,6 +2,7 @@ package swp.tuilmenau.carduinodroid.controller;
 
 
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -40,6 +41,7 @@ public class Arduino
     private PendingIntent mPermissionIntent;
     private boolean mPermissionRequestPending;
     private FileOutputStream mOutputStream;
+    private FileInputStream mInputStream;
     private ParcelFileDescriptor mFileDescriptor;
     private UsbAccessory mAccessory;
     public BroadcastReceiver mUsbReceiver;
@@ -134,6 +136,7 @@ public class Arduino
         {
             mAccessory = accessory;
             FileDescriptor fd = mFileDescriptor.getFileDescriptor();
+            mInputStream = new FileInputStream(fd);
             mOutputStream = new FileOutputStream(fd);
             log.write(LOG.INFO, "Accessory Opened");
         }
@@ -202,5 +205,25 @@ public class Arduino
                 log.write(LOG.WARNING, "Failed to send commands to Arduino.");
             }
         }      
-    }   
+    }
+    
+    public int[] ReadInfo(){
+    	try {
+			if(mInputStream.available() != 0)
+			{
+				int available = mInputStream.available();
+				int[] buffer = new int[available];
+				for(int i = 0; i < available; i++)
+					buffer[i] = mInputStream.read();
+				return buffer;
+			}
+			else
+			{
+				return null;
+			}
+		} catch (IOException e) {
+			log.write(LOG.WARNING, "Read failed");
+			return null;
+		}
+    }
 }

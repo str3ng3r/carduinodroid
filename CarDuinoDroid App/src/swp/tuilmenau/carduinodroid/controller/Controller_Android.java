@@ -69,6 +69,23 @@ public class Controller_Android
 										else data = data + 0 + ";";	
 		
 		data = data + gps.getGPS() + ";";
+		
+		int[]temp = arduino.ReadInfo();
+		
+		if(temp.length == 6){
+			data = data + temp[1] + ";";
+			data = data + (temp[3]/2) + ";";//strom;kapazität in prozent;voltage;temp
+			data = data + temp[4] + ";";
+			data = data + temp[5] + ";";
+		}
+		else
+		{
+			log.write(LOG.WARNING, "More then 7 bits transfered");
+			data = data + temp[(temp.length - 5)] + ";";
+			data = data + (temp[(temp.length - 3)]/2) + ";";//strom;kapazität in prozent;voltage;temp
+			data = data + temp[(temp.length - 2)] + ";";
+			data = data + temp[(temp.length - 1)] + ";";
+		}
 
 		return data;
 	}
