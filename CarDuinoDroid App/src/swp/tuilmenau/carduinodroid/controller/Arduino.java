@@ -173,26 +173,52 @@ public class Arduino
 	 * @param speed The Speed at wich the car should drive. (Range 0 - 16)
 	 * @param right Determines whether to turn left or right.
 	 * @param dir The Angle at which the car should turn. (Range 0 - 8)
+	 * @param reset 
+	 * @param light 
+	 * @param led 
 	 */
-    public void SendCommand(boolean front,int speed, boolean right,int dir)
+    public void SendCommand(boolean front,int speed, boolean right,int dir, boolean led, boolean light, boolean reset)
     {
-    	byte[] buffer = new byte[4]; 
-    	if(speed > 16)
+    	byte[] buffer = new byte[4];
+    	byte temp;
+    	buffer[0] = 0x43;
+    	if(speed >= 16)
     	{
-            speed = 16;
+            speed = 15;
         }
+    	temp = (byte)speed;
+    	temp = (byte) (temp << 4);
+    	if(front)
+    	{
+    		temp = (byte) (temp | 0x04);
+    	}
+    	buffer[1] = temp;
         if(dir > 8)
         {
             dir = 8;
         }
-        if(front) buffer[0] = 1;
-        	else buffer[0]=0;
-        buffer[1] = (byte)speed;
-        if(right) buffer[2] = 1;
-        	else buffer[2] = 0;
-        buffer[3] = (byte)dir;
-        		
-        Log.e("arduino", front+" "+ speed + " " + right + " "+ dir);
+    	temp = (byte)dir;
+    	temp = (byte) (temp << 4);
+    	if(right)
+    	{
+    		temp = (byte) (temp | 0x04);
+    	}
+    	buffer[2] = temp;
+    	
+    	temp = 0;
+    	if(led){
+    		temp = (byte) (temp | 0x80);
+    	}
+    	if(light){
+    		temp = (byte) (temp | 0x40);
+    	}
+    	if(reset){
+    		temp = (byte) (temp | 0x08);
+    	}
+    	
+    	buffer[3] = temp;
+    	
+        Log.e("arduino", front+" "+ speed + " " + right + " "+ dir + " "+ led + " "+ light + " "+ reset);
         if (mOutputStream != null)
         {
             try

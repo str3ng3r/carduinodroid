@@ -115,7 +115,7 @@ public class Controller_Android
 	{
 		final String TRUE_STRING = "true";
 		
-		boolean front, right;
+		boolean front, right, led, light, reset;
 		String[] parts = data.split(";",-1);
 
 		switch (Integer.parseInt(parts[0]))
@@ -124,8 +124,12 @@ public class Controller_Android
 			{
 				front = (parts[2].equals(TRUE_STRING));
 				right = (parts[4].equals(TRUE_STRING));
-				arduino.SendCommand(front, Integer.parseInt(parts[1]), right, Integer.parseInt(parts[3]));
-				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]);	
+				led = (parts[5].equals(TRUE_STRING));
+				light = (parts[6].equals(TRUE_STRING));
+				reset = (parts[7].equals(TRUE_STRING));
+				
+				arduino.SendCommand(front, Integer.parseInt(parts[1]), right, Integer.parseInt(parts[3]), led, light, reset);
+				log.write(LOG.INFO, "data: "+parts[1]+";"+parts[2]+";"+parts[3]+";"+parts[4]+";"+parts[5]+";"+parts[6]+";"+parts[7]);	
 			} break;
 			
 			case 2: // Everything for camera settings
