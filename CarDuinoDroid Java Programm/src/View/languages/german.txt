@@ -26,3 +26,4 @@ Sprache
 OK
 Die Änderungen werden erst nach dem Neustart wirksam!
 Qualität
+Batterie

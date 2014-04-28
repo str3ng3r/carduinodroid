@@ -204,6 +204,8 @@ public class GUI_Computer extends JFrame{
 		longitude = new JLabel();
 		JLabel present_ip_text = new JLabel(Names.get(19) + ": ");
 		JLabel ip_label = new JLabel();
+		JLabel present_battery_text = new JLabel(Names.get(28) + ": ");
+		JLabel battery_label = new JLabel();
 		up = new JLabel(up_icon);
 		down = new JLabel(down_icon);
 		left = new JLabel(left_icon);
@@ -293,19 +295,25 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(present_ip_text);
 		panel_other.add(ip_label);
 		
+		//battery
+		present_battery_text.setBounds(5, 155, 80, 20);
+		battery_label.setBounds(90, 155, 105, 20);
+		panel_other.add(present_battery_text);
+		panel_other.add(battery_label);
+		
 		//quality_slider
-		quality_slider.setBounds(5, 180, 190, 20);
-		quality_label.setBounds(5, 155, 190, 20);
+		quality_slider.setBounds(5, 205, 190, 20);
+		quality_label.setBounds(5, 180, 190, 20);
 		panel_other.add(quality_slider);
 		panel_other.add(quality_label);
 		quality_slider.addMouseListener(new Quality_MouseListener(quality_slider, controller_Computer));
 		quality_slider.setFocusable(false);
 		
 		//key feedback
-		up.setBounds(95, 380, 30, 30);
-		down.setBounds(95, 415, 30, 30);
-		left.setBounds(60, 415, 30, 30);
-		right.setBounds(130, 415, 30, 30);
+		up.setBounds(95, 405, 30, 30);
+		down.setBounds(95, 440, 30, 30);
+		left.setBounds(60, 440, 30, 30);
+		right.setBounds(130, 440, 30, 30);
 		up.setBorder(unpressed_border);
 		down.setBorder(unpressed_border);
 		left.setBorder(unpressed_border);
@@ -316,39 +324,39 @@ public class GUI_Computer extends JFrame{
 		panel_other.add(right);
 				
 		//light_button
-		light_button.setBounds(30,355,80,20);
+		light_button.setBounds(30,380,80,20);
 		panel_other.add(light_button);
 		light_button.addActionListener(new Light_ActionListener(controller_Computer, log, light_button));
 		light_button.setFocusable(false);
 		
 		//map_button
-		map_button.setBounds(115,355,80,20);
+		map_button.setBounds(115,380,80,20);
 		panel_other.add(map_button);
 		map_button.addActionListener(new Map_ActionListener(controller_Computer, latitude, longitude));
 		map_button.setFocusable(false);
 		
 		//signal_button
-		signal_button.setBounds(30, 305, 165, 20);
+		signal_button.setBounds(30, 330, 165, 20);
 		panel_other.add(signal_button);
 		signal_button.addActionListener(new Signal_ActionListener(controller_Computer));
 		signal_button.setFocusable(false);
 		
 		//soundrecord_button
-		soundrecord_button.setBounds(30, 330, 165, 20);
+		soundrecord_button.setBounds(30, 355, 165, 20);
 		panel_other.add(soundrecord_button);
 		soundrecord_button.addActionListener(new Record_ActionListener(controller_Computer, log, soundrecord_button));
 		soundrecord_button.setFocusable(false);
 		
 		//speed_slider
-		speed_slider.setBounds(5, 230, 190, 20);
-		speed_label.setBounds(5, 205, 190, 20);
+		speed_slider.setBounds(5, 255, 190, 20);
+		speed_label.setBounds(5, 230, 190, 20);
 		panel_other.add(speed_slider);
 		panel_other.add(speed_label);
 		speed_slider.setFocusable(false);
 		
 		//angle_slider
-		angle_slider.setBounds(5, 280, 190, 20);
-		angle_label.setBounds(5, 255, 190, 20);
+		angle_slider.setBounds(5, 305, 190, 20);
+		angle_label.setBounds(5, 280, 190, 20);
 		panel_other.add(angle_slider);
 		panel_other.add(angle_label);
 		angle_slider.setFocusable(false);
