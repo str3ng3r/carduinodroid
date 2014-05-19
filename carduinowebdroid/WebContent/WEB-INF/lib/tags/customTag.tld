@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
+  <tlib-version>1.0</tlib-version>
+    <tag>
+        <name>user</name>
+        <tag-class>de.carduinodroid.web.UserTag</tag-class>
+        <info>Returns user i</info>
+        <attribute>
+        	<name>num</name>
+        	<rtexprvalue>true</rtexprvalue>
+            <required>false</required>
+            <description>Which user to be selected from the list</description>
+        </attribute>
+        <attribute>
+        	<name>par</name>
+            <required>true</required>
+            <description>Parameter which to output</description>
+        </attribute>
+    </tag>
+    <tag>
+    	<name>chkRight</name>
+    	<tag-class>de.carduinodroid.web.SessionTag</tag-class>
+    	<info>Check specific rights</info>
+    	<attribute>
+    		<name>par</name>
+    		<required>true</required>
+    		<description>Parameter</description>
+    	</attribute>
+    </tag>
+    <tag>
+    	<name>getLog</name>
+    	<tag-class>de.carduinodroid.web.LogTag</tag-class>
+    	<info>Gets current log</info>
+    </tag>
+    <tag>
+    	<name>getQ</name>
+    	<tag-class>de.carduinodroid.web.QueueTag</tag-class>
+    	<info>Get current Queue</info>
+    	<attribute>
+        	<name>par</name>
+            <required>true</required>
+            <description>Parameter which to output</description>
+        </attribute>
+    </tag>
+    <tag>
+    	<name>getConf</name>
+    	<tag-class>de.carduinodroid.web.ConfigTag</tag-class>
+    	<info>Get current Settings</info>
+    	<attribute>
+        	<name>par</name>
+            <required>true</required>
+            <description>Parameter which to output</description>
+        </attribute>
+    </tag>
+    <tag>
+    	<name>getremTime</name>
+    	<tag-class>de.carduinodroid.web.TimeTag</tag-class>
+    	<info>Get the remaining drive time</info>
+    </tag>
+</taglib>
